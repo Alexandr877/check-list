@@ -41,6 +41,9 @@
                 <v-text-field name="input-7-3" label="Label Text" v-html="step.title" multi-line></v-text-field>
               </v-flex>
               <div class="alwaysleft">
+                <v-btn icon class="blue--text text--lighten-2" @click="changeColorResset(item, i)">
+                  <v-icon>autorenew</v-icon>
+                </v-btn>
                 <v-btn icon class="blue--text text--lighten-2" @click="changeColorPass(item, i)">
                   <v-icon>thumb_up</v-icon>
                 </v-btn>
@@ -113,6 +116,11 @@ export default {
     changeColorPass: function (item, i) {
         let note = this.note;
         let myObj= {color: '#a5d6a7'}
+        return testCase.child(item['.key']).child('title').child(i).update(myObj)
+    },
+    changeColorResset: function (item, i) {
+        let note = this.note;
+        let myObj= {color: ''}
         return testCase.child(item['.key']).child('title').child(i).update(myObj)
     },
     changeColorFalse: function (item, i) {
