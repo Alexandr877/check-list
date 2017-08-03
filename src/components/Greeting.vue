@@ -32,19 +32,27 @@
       </v-btn>
     </v-toolbar>
     <main>
-      
       <v-expansion-panel>
         <v-expansion-panel-content v-for="(item,i) in test" :key="i">
-          <div slot="header" v-html="item.name">
+          <div class="testheader" slot="header" v-html="item.name"></div>
+          <div v-for="(step,i) in item.title">
+            <v-layout row class="testspace">
+              <v-flex xs10 v-bind:style="{ 'background-color': step.color }">
+                <v-text-field name="input-7-3" label="Label Text" v-html="step.title" multi-line></v-text-field>
+              </v-flex>
+              <div class="alwaysleft">
+                <v-btn icon class="blue--text text--lighten-2" @click="changeColorPass(item, i)">
+                  <v-icon>thumb_up</v-icon>
+                </v-btn>
+                <v-btn icon class="red--text text--lighten-2" @click="changeColorFalse(item, i)">
+                  <v-icon>thumb_down</v-icon>
+                </v-btn>
+                <v-btn icon class="blue--text text--lighten-2" @click="removeItem(item, i)">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+              </div>
+            </v-layout>
           </div>
-          <v-list-tile avatar v-for="(step,i) in item.title">
-            <v-list-tile-content>
-              <v-list-tile-title v-html="step.title"></v-list-tile-title>
-            </v-list-tile-content>
-            <v-btn fab dark small primary @click="removeItem(item, i)">
-              <v-icon dark>remove</v-icon>
-            </v-btn>
-          </v-list-tile>
           <fulldialog v-bind:list="item"></fulldialog>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -71,13 +79,13 @@ import firebase from '../../node_modules/firebase'
 import config from '../helpers/firebaseConfig'
 import fulldialog from './newComponents/fulldialog'
 import addchecklist from './newComponents/addchecklist'
-import progress from './newComponents/progress'
 let app = firebase.database()
 let testCase = app.ref('test')
 export default {
   data() {
     return {
       dialogm1: '',
+      color: '',
       dialog: false,
       clipped: true,
       drawer: true,
@@ -102,16 +110,38 @@ export default {
     test: testCase
   },
   methods: {
+    changeColorPass: function (item, i) {
+        let note = this.note;
+        let myObj= {color: '#a5d6a7'}
+        return testCase.child(item['.key']).child('title').child(i).update(myObj)
+    },
+    changeColorFalse: function (item, i) {
+        let note = this.note;
+        let myObj= {color: '#ff5252'}
+        return testCase.child(item['.key']).child('title').child(i).update(myObj)
+    },
     removeItem: function (item, i) {
       console.log(item['.key'], i);
       console.log(testCase.child(item['.key']).child('title').child(i));
       testCase.child(item['.key']).child('title').child(i).remove()
     }
   },
-  components: { fulldialog, addchecklist, progress }
+  components: { fulldialog, addchecklist }
 }
 </script>
 
 <style lang="stylus">
   @import '../stylus/main'
+  .red
+    background-color: green
+  .newItem
+    padding-right: 20px
+  .alwaysleft
+    justify-content: flex-end
+    display: flex
+  .testspace
+    background-color: color
+    justify-content: space-between
+  .testheader
+    padding-right: 50px
 </style>

@@ -26,6 +26,7 @@
 
 <script>
 import firebase from '../../../node_modules/firebase'
+import wysiwygnew from './wysiwygnew'
 let db = firebase.database()
 let testCase = db.ref('test')
 
@@ -40,6 +41,7 @@ export default {
   firebase: {
     test: testCase
   },
+  components: { wysiwygnew },
   methods: {
     addCase: function () {
       testCase.push(this.testD)
