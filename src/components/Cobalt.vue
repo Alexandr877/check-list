@@ -2,7 +2,7 @@
   <v-app light>
     <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" enable-resize-watcher>
       <v-list>
-          <div value="true" v-for="(item, i) in items" :key="i">
+        <div value="true" v-for="(item, i) in items" :key="i">
           <v-list-tile :href="item.href" :router="item.router">
             <v-list-tile-action>
               <v-icon light v-html="item.icon"></v-icon>
@@ -32,7 +32,33 @@
       </v-btn>
     </v-toolbar>
     <main>
-      <eWizard></eWizard>
+      <v-expansion-panel>
+        <v-expansion-panel-content v-for="(item,i) in test" :key="i">
+          <div class="testheader" slot="header" v-html="item.name"></div>
+          <div v-for="(step,i) in item.title">
+            <v-layout row class="testspace">
+              <v-flex xs10 v-bind:style="{ 'background-color': step.color }">
+                <v-text-field class="titletext" name="input-7-3" label="Label Text" v-html="step.title" multi-line></v-text-field>
+              </v-flex>
+              <div class="alwaysleft">
+                <v-btn icon class="blue--text text--lighten-2" @click="changeColorResset(item, i)">
+                  <v-icon>autorenew</v-icon>
+                </v-btn>
+                <v-btn icon class="blue--text text--lighten-2" @click="changeColorPass(item, i)">
+                  <v-icon>thumb_up</v-icon>
+                </v-btn>
+                <v-btn icon class="red--text text--lighten-2" @click="changeColorFalse(item, i)">
+                  <v-icon>thumb_down</v-icon>
+                </v-btn>
+                <v-btn icon class="blue--text text--lighten-2" @click="removeItem(item, i)">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+              </div>
+            </v-layout>
+          </div>
+          <dialogCobalt v-bind:list="item"></dialogCobalt>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
     </main>
     <v-navigation-drawer temporary :right="right" v-model="rightDrawer">
       <v-list>
@@ -46,7 +72,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :fixed="fixed">
-      <addchecklist></addchecklist>
+      <addCobalt></addCobalt>
     </v-footer>
   </v-app>
 </template>
@@ -54,11 +80,10 @@
 <script>
 import firebase from '../../node_modules/firebase'
 import config from '../helpers/firebaseConfig'
-import fulldialog from './newComponents/fulldialog'
-import addchecklist from './newComponents/addchecklist'
-import eWizard from './newComponents/eWizard'
+import dialogCobalt from './newComponents/dialogCobalt'
+import addCobalt from './newComponents/addCobalt'
 let app = firebase.database()
-let testCase = app.ref('test')
+let cobalt = app.ref('cobalt')
 export default {
   data() {
     return {
@@ -85,31 +110,31 @@ export default {
     }
   },
   firebase: {
-    test: testCase
+    test: cobalt
   },
   methods: {
     changeColorPass: function (item, i) {
-      let note = this.note;
-      let myObj = { color: '#a5d6a7' }
-      return testCase.child(item['.key']).child('title').child(i).update(myObj)
+        let note = this.note;
+        let myObj= {color: '#a5d6a7'}
+        return cobalt.child(item['.key']).child('title').child(i).update(myObj)
     },
     changeColorResset: function (item, i) {
-      let note = this.note;
-      let myObj = { color: '' }
-      return testCase.child(item['.key']).child('title').child(i).update(myObj)
+        let note = this.note;
+        let myObj= {color: ''}
+        return cobalt.child(item['.key']).child('title').child(i).update(myObj)
     },
     changeColorFalse: function (item, i) {
-      let note = this.note;
-      let myObj = { color: '#ff5252' }
-      return testCase.child(item['.key']).child('title').child(i).update(myObj)
+        let note = this.note;
+        let myObj= {color: '#ff5252'}
+        return cobalt.child(item['.key']).child('title').child(i).update(myObj)
     },
     removeItem: function (item, i) {
       console.log(item['.key'], i);
-      console.log(testCase.child(item['.key']).child('title').child(i));
-      testCase.child(item['.key']).child('title').child(i).remove()
+      console.log(cobalt.child(item['.key']).child('title').child(i));
+      cobalt.child(item['.key']).child('title').child(i).remove()
     }
   },
-  components: { fulldialog, addchecklist, eWizard }
+  components: { dialogCobalt, addCobalt }
 }
 </script>
 
