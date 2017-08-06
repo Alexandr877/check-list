@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Auth from '@/components/Auth'
 import Hello from '@/components/Hello'
-import Greeting from '@/components/Greeting'
+import App from '@/App'
+import Ewizard from '@/components/newComponents/eWizard'
 import Cobalt from '@/components/Cobalt'
 
 Vue.use(Router)
@@ -21,8 +22,8 @@ export default new Router({
     },
     {
       path: '/success',
-      name: 'Greeting',
-      component: Greeting
+      name: 'eWizard',
+      component: Ewizard
     },
     {
       path: '/cobalt',

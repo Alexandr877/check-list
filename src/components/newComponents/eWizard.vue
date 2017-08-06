@@ -25,6 +25,7 @@
             </div>
             <fulldialog v-bind:list="item"></fulldialog>
         </v-expansion-panel-content>
+        <addchecklist></addchecklist>
     </v-expansion-panel>
 </template>
 <script>
