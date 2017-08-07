@@ -1,12 +1,25 @@
 <template>
       <v-expansion-panel>
         <v-expansion-panel-content v-for="(item,i) in test" :key="i">
-          <div class="testheader" slot="header" v-html="item.name"></div>
+          <div class="headerN" slot="header">
+                <v-layout row class="testspace">
+                    <v-flex xs10>
+                        <v-text-field class="titletext" name="input-7-3" label="Label Text" v-html="item.name" multi-line></v-text-field>
+                    </v-flex>
+                    <div class="alwaysleft">
+                        <v-text-field class="titletext" name="input-7-3" label="Label Text" v-html="item.user"></v-text-field>
+                        <v-btn icon class="blue--text text--lighten-2" @click="setUser(item)">
+                            <v-icon>rowing</v-icon>
+                        </v-btn>
+                    </div>
+                </v-layout>
+            </div>
           <div v-for="(step,i) in item.title">
             <v-layout row class="testspace">
               <v-flex xs10 v-bind:style="{ 'background-color': step.color }">
                 <v-text-field class="titletext" name="input-7-3" label="Label Text" v-html="step.title" multi-line></v-text-field>
               </v-flex>
+              <infocobalt class="alwaysleft" v-bind:info="step, i"></infocobalt>
               <div class="alwaysleft">
                 <v-btn icon class="blue--text text--lighten-2" @click="changeColorResset(item, i)">
                   <v-icon>autorenew</v-icon>
@@ -34,6 +47,7 @@ import firebase from '../../node_modules/firebase'
 import config from '../helpers/firebaseConfig'
 import dialogCobalt from './newComponents/dialogCobalt'
 import addCobalt from './newComponents/addCobalt'
+import infocobalt from './newComponents/infocobalt'
 let app = firebase.database()
 let cobalt = app.ref('cobalt')
 export default {
@@ -65,6 +79,18 @@ export default {
     test: cobalt
   },
   methods: {
+    setUser: function (item){
+            let user = firebase.auth().currentUser;
+            console.log(user.displayName);
+            let myuser = this.user;
+            let myDataObj = {
+                status: "in_progress",
+                progrescolor: "#80CBC4",
+                user:"in progress by " + user.displayName
+            }
+            return cobalt.child(item['.key']).update(myDataObj)
+
+        },
     changeColorPass: function (item, i) {
         let note = this.note;
         let myObj= {color: '#a5d6a7'}
@@ -86,7 +112,7 @@ export default {
       cobalt.child(item['.key']).child('title').child(i).remove()
     }
   },
-  components: { dialogCobalt, addCobalt }
+  components: { dialogCobalt, addCobalt, infocobalt }
 }
 </script>
 

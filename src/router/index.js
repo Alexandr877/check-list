@@ -9,7 +9,7 @@ import Cobalt from '@/components/Cobalt'
 Vue.use(Router)
 
 export default new Router({
-    routes: [
+  routes: [
     {
       path: '/',
       name: 'Auth',
@@ -22,18 +22,16 @@ export default new Router({
     },
     {
       path: '/success',
-      name: 'eWizard',
-      component: Ewizard
-    },
-    {
-      path: '/cobalt',
-      name: 'Cobalt',
-      component: Cobalt
-    },
-    {
-      path: '/hello',
       name: 'Hello',
-      component: Hello
+      component: Hello,
+      children: [{
+        path: 'ewizard',
+        component: Ewizard
+      },
+      {
+        path: 'cobalt',
+        component: Cobalt
+      }]
     }
   ]
 })

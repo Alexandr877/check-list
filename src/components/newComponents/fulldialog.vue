@@ -12,6 +12,14 @@
               <v-text-field name="input-7-1" label="Label Text" multi-line v-model="note"></v-text-field>
             </v-flex>
           </v-layout>
+          <v-layout row>
+            <v-flex xs4>
+              <v-subheader>Add information about step</v-subheader>
+            </v-flex>
+            <v-flex xs8>
+              <v-text-field name="input-7-1" label="Label Text" multi-line v-model="description"></v-text-field>
+            </v-flex>
+          </v-layout>
         </v-card-text>
         <v-card-actions>
           <v-btn class="green--text darken-1" flat="flat" @click="removeItem(list)" @click.native="dialog = false">Remove Case</v-btn>
@@ -35,7 +43,8 @@ export default {
   data() {
     return {
       dialog: false,
-      note: ''
+      note: '',
+      description: ''
     }
   },
   firebase: {
@@ -72,9 +81,11 @@ export default {
       if (this.note !== '') {
         newKey = "title" + new String(rand()).hashCode()
         let myObj = {};
+        let description = this.description;
         let note = this.note;
-        myObj[newKey] = { title: note, check1: false }
+        myObj[newKey] = { title: note, check1: false, info: description }
         testCase.child(item['.key']).child('title').update(myObj)
+        this.description = ''
         return this.note = ''
       }
       else{
