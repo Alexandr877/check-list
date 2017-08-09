@@ -21,7 +21,7 @@
 <script>
 import firebase from '../../../node_modules/firebase'
 let db = firebase.database()
-let testCase = db.ref('test')
+let testCase = db.ref('local')
 export default {
     data() {
         return {

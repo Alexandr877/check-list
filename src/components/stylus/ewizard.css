@@ -1,0 +1,19 @@
+
+  .titletext
+    padding-left: 20px
+  .red
+    background-color: green
+  .newItem
+    padding-right: 20px
+  .alwaysleft
+    justify-content: flex-end
+    display: flex
+    align-items: center
+  .headerN
+    width: 100%
+    padding-right: 40px
+  .testspace
+    background-color: color
+    justify-content: space-between
+  .testheader
+    padding-right: 50px

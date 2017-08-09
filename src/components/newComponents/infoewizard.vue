@@ -19,7 +19,7 @@
 <script>
 import firebase from '../../../node_modules/firebase'
 let app = firebase.database()
-let testCase = app.ref('test')
+let testCase = app.ref('local')
 export default {
     props: ['info','i'],
     data() {

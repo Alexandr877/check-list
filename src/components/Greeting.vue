@@ -58,7 +58,7 @@ import fulldialog from './newComponents/fulldialog'
 import addchecklist from './newComponents/addchecklist'
 import eWizard from './newComponents/eWizard'
 let app = firebase.database()
-let testCase = app.ref('test')
+let testCase = app.ref('local')
 export default {
   data() {
     return {
