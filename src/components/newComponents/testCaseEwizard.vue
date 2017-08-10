@@ -25,13 +25,13 @@
                                 <th>Comments</th>
                             </tr>
                         </thead>
-                        <tbody v-for="item in test">
-                            <tr v-for="(step,i) in item.title">
-                                <td>{{step.name}}</td>
-                                <td>{{step.over}}</td>
-                                <td>{{step.step}}</td>
-                                <td>{{step.info}}</td>
-                                <td>{{step.comment}}</td>
+                        <tbody v-for="(step,i) in myItem.title">
+                            <tr>
+                                <td v-html="step.name"></td>
+                                <td v-html="step.over"></td>
+                                <td v-html="step.step"></td>
+                                <td v-html="step.info"></td>
+                                <td v-html="step.comment"></td>
                             </tr>
                         </tbody>
                     </table>
