@@ -8,7 +8,7 @@
                     </v-flex>
                     <div class="alwaysleft">
                         <v-text-field class="titletext" name="input-7-3" label="Label Text" v-html="item.user"></v-text-field>
-                        <v-btn icon class="blue--text text--lighten-2" @click="setUser(item)">
+                        <v-btn icon class="blue--text text--lighten-2" @click="setUser(item, test)">
                             <v-icon>rowing</v-icon>
                         </v-btn>
                     </div>
@@ -39,6 +39,9 @@
           <dialogCobalt v-bind:list="item"></dialogCobalt>
         </v-expansion-panel-content>
         <addCobalt></addCobalt>
+        <v-btn icon class="red--text text--lighten-2" @click="resetData()">
+                <v-icon>refresh</v-icon>
+            </v-btn>
       </v-expansion-panel>
 </template>
 
@@ -48,8 +51,10 @@ import config from '../helpers/firebaseConfig'
 import dialogCobalt from './newComponents/dialogCobalt'
 import addCobalt from './newComponents/addCobalt'
 import infocobalt from './newComponents/infocobalt'
+import Rx from '../../node_modules/rxjs/Rx'
 let app = firebase.database()
 let cobalt = app.ref('cobalt')
+const data = require('../helpers/data')
 export default {
   data() {
     return {
@@ -62,6 +67,22 @@ export default {
       testD: {
         name: ''
       },
+      resetData: function() {
+            let itemArray = []
+            let cleanUserData = {
+                status: "",
+                progrescolor: "#80CBC4",
+                user:""
+            }
+            console.log(data.getData('all_case')[0]);
+            Rx.Observable.from(data.getData('all_case'))
+            // .toArray((array) => itemArray.push(array))
+            .subscribe((step) => {
+                // data.setData('arrayStep', step)
+                // console.log(1234, data.getData('arrayStep'));
+                cobalt.child(step['.key']).update(cleanUserData)
+            })
+        },
       items: [
         { icon: 'bubble_chart', title: 'eWizard', href: "#/success" },
         { icon: 'bubble_chart', title: 'Cobalt', href: "#/cobalt" },
@@ -79,7 +100,8 @@ export default {
     test: cobalt
   },
   methods: {
-    setUser: function (item){
+    setUser: function (item, test){
+      data.setData('all_case', test)
             let user = firebase.auth().currentUser;
             console.log(user.displayName);
             let myuser = this.user;
