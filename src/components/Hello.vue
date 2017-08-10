@@ -69,7 +69,7 @@ export default {
       items: [
         { icon: 'fingerprint', title: 'eWizard', href: "#/success/ewizard" },
         { icon: 'whatshot', title: 'Cobalt', href: "#/success/cobalt" },
-        { icon: 'bubble_chart', title: 'in progress' },
+        { icon: 'hot_tub', title: 'Test Case' ,href: '#/success/eWizardTestCase' },
         { icon: 'bubble_chart', title: 'in progress' },
         { icon: 'bubble_chart', title: 'in progress' }
       ],

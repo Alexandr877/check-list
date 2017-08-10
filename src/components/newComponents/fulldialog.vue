@@ -36,7 +36,7 @@
 import firebase from '../../../node_modules/firebase'
 import wysiwygnew from './wysiwygnew'
 let db = firebase.database()
-let testCase = db.ref('local')
+let testCase = db.ref('test')
 
 export default {
   props: ['list'],

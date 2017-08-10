@@ -5,7 +5,7 @@ import addchecklist from '../newComponents/addchecklist'
 import infoewizard from '../newComponents/infoewizard'
 import Rx from '../../../node_modules/rxjs/Rx'
 let app = firebase.database()
-let testCase = app.ref('local')
+let testCase = app.ref('test')
 const data = require('../../helpers/data')
 
 export default {

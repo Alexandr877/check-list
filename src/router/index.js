@@ -4,6 +4,7 @@ import Auth from '@/components/Auth'
 import Hello from '@/components/Hello'
 import App from '@/App'
 import Ewizard from '@/components/newComponents/eWizard'
+import testCaseEwizard from '@/components/newComponents/testCaseEwizard'
 import Cobalt from '@/components/Cobalt'
 
 Vue.use(Router)
@@ -31,7 +32,11 @@ export default new Router({
       {
         path: 'cobalt',
         component: Cobalt
-      }]
+      },
+    {
+      path: 'eWizardTestCase',
+      component: testCaseEwizard
+    }]
     }
   ]
 })

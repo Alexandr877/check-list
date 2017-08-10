@@ -39,7 +39,9 @@
             <fulldialog v-bind:list="item"></fulldialog>
         </v-expansion-panel-content>
             <addchecklist></addchecklist>
-            <v-btn icon class="red--text text--lighten-2" @click="resetData()"><v-icon>refresh</v-icon></v-btn>
+            <v-btn icon class="red--text text--lighten-2" @click="resetData()">
+                <v-icon>refresh</v-icon>
+            </v-btn>
     </v-expansion-panel>
 </template>
  <script src='../app/ewizard.js'>

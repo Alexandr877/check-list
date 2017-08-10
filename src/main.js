@@ -6,10 +6,14 @@ import App from './App'
 import router from './router'
 import firebase from 'firebase'
 import VueFire from 'vuefire'
+const editor = require("vue2-html5-editor")
 
 Vue.config.productionTip = false
 Vue.use(VueFire)
 Vue.use(Vuetify)
+Vue.use(editor, {
+    name: 'vue2-html5-editor'
+});
 
 /* eslint-disable no-new */
 new Vue({
