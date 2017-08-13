@@ -104,7 +104,6 @@ export default {
 
         },
         changeColorPass: function (item, i) {
-            console.log(data.getData('all_case'));
             let note = this.note;
             let myObj = { color: '#a5d6a7' }
             return testCase.child(item['.key']).child('title').child(i).update(myObj)

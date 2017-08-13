@@ -5,8 +5,7 @@
                 <v-icon>info_outline</v-icon>
             </v-btn>
             <v-card>
-                <v-card-title>{{info.de}}
-                </v-card-title>
+                <v-card-title>{{info.de}}</v-card-title>
                 <v-card-text v-html="info.info"></v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>

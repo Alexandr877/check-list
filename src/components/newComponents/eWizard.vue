@@ -11,6 +11,7 @@
                         <v-btn icon class="blue--text text--lighten-2" @click="setUser(item, test)">
                             <v-icon>rowing</v-icon>
                         </v-btn>
+                        <infostep v-bind:sinfo="item"></infostep>
                     </div>
                 </v-layout>
             </div>
@@ -30,9 +31,9 @@
                         <v-btn icon class="red--text text--lighten-2" @click="changeColorFalse(item, i)">
                             <v-icon>thumb_down</v-icon>
                         </v-btn>
-                        <v-btn icon class="blue--text text--lighten-2" @click="removeItem(item, i)">
-                            <v-icon>delete</v-icon>
-                        </v-btn>
+                        <!-- <v-btn icon class="blue--text text--lighten-2" @click="removeItem(item, i)"> -->
+                            <!-- <v-icon>delete</v-icon> -->
+                        <!-- </v-btn> -->
                     </div>
                 </v-layout>
             </div>
