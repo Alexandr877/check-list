@@ -4,6 +4,7 @@ import fulldialog from '../newComponents/fulldialog'
 import addchecklist from '../newComponents/addchecklist'
 import infoewizard from '../newComponents/infoewizard'
 import infostep from '../newComponents/infostep'
+import editEwizard from '../newComponents/editEwizard'
 import Rx from '../../../node_modules/rxjs/Rx'
 let app = firebase.database()
 let testCase = app.ref('test')
@@ -38,7 +39,7 @@ export default {
                 progrescolor: "#80CBC4",
                 user:""
             }
-            console.log(data.getData('all_case')[0]);
+            console.log(data.getData('all_case'));
             Rx.Observable.from(data.getData('all_case'))
             // .toArray((array) => itemArray.push(array))
             .subscribe((step) => {
@@ -106,5 +107,5 @@ export default {
             testCase.child(item['.key']).child('title').child(i).remove()
         }
     },
-    components: { fulldialog, addchecklist, infoewizard, infostep }
+    components: { fulldialog, addchecklist, infoewizard, infostep, editEwizard }
 }

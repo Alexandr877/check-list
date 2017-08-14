@@ -21,6 +21,7 @@
                         <v-text-field class="titletext" name="input-7-3" label="Label Text" v-html="step.title" multi-line></v-text-field>
                     </v-flex>
                     <infoewizard class="alwaysleft" v-bind:info="step, i"></infoewizard>
+                    <editEwizard class="alwaysleft" v-bind:edit="item, i, step"></editEwizard>
                     <div class="alwaysleft">
                         <v-btn icon class="blue--text text--lighten-2" @click="changeColorResset(item, i)">
                             <v-icon>refresh</v-icon>

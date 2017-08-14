@@ -44,6 +44,6 @@
 </template>
 <script src="../app/testCase.js">
 </script>
-<style>
+<style src='../stylus/testCase.css' lang="stylus">
 </style>
 
