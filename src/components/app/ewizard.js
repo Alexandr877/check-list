@@ -32,7 +32,6 @@ export default {
     },
     methods: {
         resetData: function() {
-            console.log(testCase);
             let itemArray = []
             let cleanUserData = {
                 status: "",
@@ -50,14 +49,12 @@ export default {
         },
         kpi: (item) => {
             let myArray = [];
-            console.log(9999999999999999, Object.keys(item.title));
             Rx.Observable.from(Object.keys(item.title)).subscribe((Mitem) =>{ 
                 myArray.push(item.title[Mitem].proccent_pass)
             })
             Rx.Observable.from(myArray)
             .reduce((a,b) =>  a+b)
             .subscribe((item) => console.log(98756, this.value=item))
-            console.log(555555555555555555, this.value)
         },
         checkMe: function () {
             
@@ -65,13 +62,7 @@ export default {
         setUser: function (item, test){
             data.setData('array keys of '+ item.name, Object.keys(item.title))
             data.setData('all_case', test)
-            console.log(222222222222222222, test);
-            console.log(1234567890, item.title);
-            console.log(1234567890, Object.keys(item.title));
             let user = firebase.auth().currentUser;
-            console.log(user.displayName);
-            console.log(1111111111111111, data.getData('array keys of '+ item.name).length);
-            console.log(2222222222222222, 100 / data.getData('array keys of '+ item.name).length);
             data.setData('proccent of '+ item.name, 100 / data.getData('array keys of '+ item.name).length)
             let myuser = this.user;
             let myDataObj = {
@@ -83,12 +74,9 @@ export default {
 
         },
         changeColorPass: function (item, i) {
-            console.log(data.getData('proccent of '+ item.name));
-            console.log(data.getData('all_case'));
             let note = this.note;
             let myArray =[];
             let myObj = { color: '#a5d6a7', proccent_failed: 0, proccent_pass: data.getData('proccent of '+ item.name)}
-            console.log(myObj);
             return testCase.child(item['.key']).child('title').child(i).update(myObj)
         },
         changeColorResset: function (item, i) {
@@ -102,8 +90,6 @@ export default {
             return testCase.child(item['.key']).child('title').child(i).update(myObj)
         },
         removeItem: function (item, i) {
-            console.log(item['.key'], i);
-            console.log(testCase.child(item['.key']).child('title').child(i));
             testCase.child(item['.key']).child('title').child(i).remove()
         }
     },

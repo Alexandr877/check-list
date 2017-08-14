@@ -1,16 +1,11 @@
 <template>
     <v-expansion-panel>
         <v-expansion-panel-content v-for="(myItem,i) in test" :key="i">
-            <div class="headerN" slot="header" @click="changeSort(myItem, i)">
+            <div class="headerN" slot="header">
                 <v-layout row class="testspace">
                     <v-flex xs10>
                         <v-text-field class="titletext" name="input-7-3" label="Label Text" v-html="myItem.name" multi-line></v-text-field>
                     </v-flex>
-                    <div class="alwaysleft">
-                        <v-btn icon class="blue--text text--lighten-2" @click="setUser(myItem, test)">
-                            <v-icon>rowing</v-icon>
-                        </v-btn>
-                    </div>
                 </v-layout>
             </div>
             <div>
